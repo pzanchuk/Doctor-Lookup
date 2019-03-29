@@ -9,6 +9,7 @@ $(document).ready(function() {
   $('#searh-by-name').click(function() {
     let name = $('#name').val();
     $('#name').val("");
+    $('.hidden').show();
 
     let newDoctor = new Doctor();
     let promise = newDoctor.getDoctorByName(name);
@@ -28,6 +29,7 @@ $(document).ready(function() {
   $('#searh-by-issue').click(function() {
     let name = $('#name').val();
     $('#name').val("");
+    $('.hidden').show();
 
     let newDoctor = new Doctor();
     let promise = newDoctor.getDoctorByName(name);

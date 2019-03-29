@@ -2,7 +2,7 @@ export class Doctor {
   getDoctorByName(name) {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      let url = `https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=47.611%2C-122.340%2C090&skip=0&limit=10&user_key=${process.env.exports.apiKey}`;
+      let url = `https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=47.611%2C-122.340%2C090&skip=0&limit=60&user_key=${process.env.exports.apiKey}`;
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);
@@ -18,7 +18,7 @@ export class Doctor {
   getDoctorByIssue(issue) {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      let url = `https://api.betterdoctor.com/2016-03-01/doctors?query=${issue}&location=47.611%2C-122.340%2C090&skip=0&limit=10&user_key=40984f6d0d0c00fb3ea39c291e28d322=${process.env.exports.apiKey}`;
+      let url = `https://api.betterdoctor.com/2016-03-01/doctors?query=${issue}&location=47.611%2C-122.340%2C090&skip=0&limit=60&user_key=40984f6d0d0c00fb3ea39c291e28d322=${process.env.exports.apiKey}`;
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);
@@ -33,10 +33,6 @@ export class Doctor {
 
   getName(promise){
     let names = "";
-    // let website ="";
-    // let accepting = "";
-
-
     if(promise.data.length === 0){
       return "No results."
     }
@@ -65,7 +61,11 @@ export class Doctor {
   getWebSite(promise){
     let website = "";
     for (let i = 0; i < promise.data.length; i++) {
-      website +="<li>" + promise.data[i].practices[0].website + "</li>";
+      if(promise.data[i].practices[0].website === undefined){
+        website += "<li>Website is not provided<li>"
+      }else{
+        website +="<li>" + promise.data[i].practices[0].website + "</li>";
+      }
     }
     return website;
   }

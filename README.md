@@ -6,7 +6,7 @@
 
 ## Description
 
-_This program makes a search of nearby doctors based on user's input._
+_This program makes a search of nearby doctors based on user's input. Search returns 60 doctors per request._
 
 ## Specifications
 
