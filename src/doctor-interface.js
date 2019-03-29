@@ -12,9 +12,10 @@ $(document).ready(function() {
 
     let newDoctor = new Doctor();
     let promise = newDoctor.getDoctorByName(name);
+
     promise.then(function(response) {
       let body = JSON.parse(response);
-      $('.showName').text(`Name goes here: `);
+      $('.showName').append(newDoctor.getDocsInfoByName(body));
     }, function(error) {
       $('.showErrors').text(`There was an error processing your request: ${error.message}`);
     });
